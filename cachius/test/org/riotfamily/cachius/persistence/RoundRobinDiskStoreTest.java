@@ -40,7 +40,18 @@ public class RoundRobinDiskStoreTest {
 			Assert.assertTrue(path.startsWith(basePath));
 			paths.add(path.substring(basePath.length()));
 		}
-		Assert.assertEquals("/000/000/000", paths.getFirst());
-		Assert.assertEquals("/000/002/001", paths.getLast());
+    if(isWindows()) {
+      Assert.assertEquals("\\000\\000\\000", paths.getFirst());
+      Assert.assertEquals("\\000\\002\\001", paths.getLast());
+    }else {
+      Assert.assertEquals("/000/000/000", paths.getFirst());
+      Assert.assertEquals("/000/002/001", paths.getLast());
+    }
 	}
+  
+	protected boolean isWindows() {
+		String os = System.getProperty("os.name");
+		return os.startsWith("Windows");
+	}
+  
 }
