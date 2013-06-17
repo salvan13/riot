@@ -303,7 +303,7 @@ public class ContentPage extends ContentEntity implements Page, Lifecycle {
 			}
 			return s + pathComponent;
 		}
-		return "/";
+		return "/" + this.site.getLocale().getLanguage().toLowerCase() + "/";
 	}
 	
 	// ----------------------------------------------------------------------
